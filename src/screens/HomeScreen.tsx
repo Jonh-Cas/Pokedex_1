@@ -1,13 +1,29 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
+import usePokemonPaginated from '../Hooks/usePokemonPaginated';
+import { styles } from '../Theme/appTheme';
 
 const HomeScreen = () => {
+
+    const { top } = useSafeAreaInsets();
+
+    usePokemonPaginated();
+
+
     return (
-        <View>
-            <Text> Home Screen</Text>
-            <Icon name='star' size={40} color='indigo' />
-        </View>
+        <>
+
+            <Image source={require('../assets/pokebola.png')}
+                   style={styles.pokebolaBG } />
+            <Text style={{
+                ...styles.title,
+                ...styles.globalMargin,
+                top: top + 20, 
+                }} > Pokedex</Text>
+
+        </>
     )
 }
 
