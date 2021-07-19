@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const FadeInImage = ({ uri, style = {} } : Props) => {
-
+ 
     const { opacity, fadeIn } = useAnimation();
     const [ isLoading, setIsLoading ] = useState( true );
 
