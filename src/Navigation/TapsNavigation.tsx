@@ -9,10 +9,6 @@ import { Tab2Screen } from './Tap2';
 
 const Tab = createBottomTabNavigator();
 
-
-
-
-
 const Tabs = () => {
   return (
     <Tab.Navigator

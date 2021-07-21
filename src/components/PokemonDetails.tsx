@@ -39,7 +39,7 @@ const PokemonDetails = ({ pokemon }: Props) => {
                 </View>
 
                 <Text style={styles.title} >Peso </Text>
-                <Text style={styles.regularText} > {pokemon.weight * 0.1} Kg</Text>
+                <Text style={styles.regularText} > {(pokemon.weight * 0.1).toFixed(2)} Kg</Text>
 
             </View>
 
