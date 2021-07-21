@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TextInput, View, StyleProp, ViewStyle } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import useDebouncedValue from '../Hooks/useDebouncedValue';
+
 
 interface Props {
+    onDebounced: (value: string) => void;
     style?: StyleProp<ViewStyle>;
 }
 
-const SearchInpunt = ({style }: Props) => {
+const SearchInpunt = ({style, onDebounced }: Props) => {
+
+    const [textValue, setTextValue] = useState('');
+    
+    const  debouncedValue = useDebouncedValue(textValue);
+    useEffect(() => {
+        onDebounced(debouncedValue);
+    }, [debouncedValue])
     return (
         <View style={{
             ...styles.container,
@@ -19,6 +29,8 @@ const SearchInpunt = ({style }: Props) => {
                     autoCapitalize='none'
                     autoCorrect={false}
                     placeholderTextColor='gray'
+                    value={textValue }
+                    onChangeText={ setTextValue }
                     
                 />
 
