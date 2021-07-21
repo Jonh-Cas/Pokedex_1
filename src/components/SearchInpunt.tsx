@@ -1,10 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, TextInput, View, StyleProp, ViewStyle } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const SearchInpunt = () => {
+interface Props {
+    style?: StyleProp<ViewStyle>;
+}
+
+const SearchInpunt = ({style }: Props) => {
     return (
-        <View style={styles.container} >
+        <View style={{
+            ...styles.container,
+            ...style as any
+            }} >
             <View style={styles.textBackground} >
                 <TextInput
                     placeholder='Buscar Pokemon'
@@ -12,6 +19,7 @@ const SearchInpunt = () => {
                     autoCapitalize='none'
                     autoCorrect={false}
                     placeholderTextColor='gray'
+                    
                 />
 
                 <Icon
@@ -55,5 +63,6 @@ const styles = StyleSheet.create({
     textInput: {
         flex: 1,
         fontSize: 18,
+        color: 'black',
     },
 })
