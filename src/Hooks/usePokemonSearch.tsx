@@ -3,16 +3,15 @@ import { pokemonApi } from '../Api/pokemonApi';
 import { PokemonPaginatedResponse, SimplePokemon, Result } from '../interfaces/pokeInterfaces';
 
 
-const usePokemonPaginated = () => {
+const usePokemonSearch = () => {
     
-    const [isLoading, setIsLoading] = useState(true);
+    const [isFetching, setIsFetching] = useState(true);
     const [simplePokemonList, setSimplePokemonList] = useState<SimplePokemon[]>([]);
-    const nextPageURL = useRef('https://pokeapi.co/api/v2/pokemon?limit=40')
+
  
     const loadPokemons = async () => {
-        setIsLoading(true);
-        const resp = await pokemonApi.get<PokemonPaginatedResponse>(nextPageURL.current);
-        nextPageURL.current = resp.data.next;
+        setIsFetching(true);
+        const resp = await pokemonApi.get<PokemonPaginatedResponse>('https://pokeapi.co/api/v2/pokemon?limit=1200');
         mapPokemonList( resp.data.results );
     }
 
@@ -28,8 +27,8 @@ const usePokemonPaginated = () => {
 
         });
 
-        setSimplePokemonList( [...simplePokemonList, ...newPokemonList  ] );
-        setIsLoading(false);
+        setSimplePokemonList( [ ...newPokemonList  ] );
+        setIsFetching(false);
 
     }
 
@@ -39,10 +38,10 @@ const usePokemonPaginated = () => {
     }, [])
 
     return {
-        isLoading,
+
         simplePokemonList,
-        loadPokemons,
+        isFetching,
     }
 }
 
-export default usePokemonPaginated;
+export default usePokemonSearch;

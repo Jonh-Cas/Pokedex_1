@@ -138,7 +138,7 @@ const PokemonDetails = ({ pokemon }: Props) => {
                     alignItems: 'center',
                 }} >
                     <FadeInImage
-                        uri={pokemon.sprites.front_shiny}
+                        uri={pokemon.sprites.front_default}
                         style={styles.basicSprites}
                     />
                 </View>
